@@ -28,6 +28,7 @@
     "prebuild": "gulp clean",
     "prepublish": "gulp build",
     "build": "gulp build",
+    "build:ci": "gulp clean && gulp build",
     "start": "gulp"
   },
   "devDependencies": {
