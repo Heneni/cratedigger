@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --outDir docs",
+    "build": "vite build --outDir docs && cp cratediggerDB.csv docs/",
     "preview": "vite preview",
     "deploy": "npm run build && touch docs/.nojekyll"
   },

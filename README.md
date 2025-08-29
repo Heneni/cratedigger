@@ -57,6 +57,8 @@ npm install
 
 3. Place your `cratediggerDB.csv` file in the project root
 
+   > **Note:** Always keep your `cratediggerDB.csv` file in the project root directory. During the build and deploy process, this file is automatically copied to the `docs/` folder so the web app can access it when running on GitHub Pages.
+
 4. Start the development server:
 ```bash
 npm run dev
@@ -67,7 +69,7 @@ npm run dev
 ## 📝 Available Scripts
 
 - `npm run dev` - Start development server with hot reload
-- `npm run build` - Build production version to `/docs` folder
+- `npm run build` - Build production version to `/docs` folder and copy `cratediggerDB.csv`
 - `npm run preview` - Preview production build locally  
 - `npm run deploy` - Build and prepare for GitHub Pages deployment
 
@@ -102,9 +104,11 @@ The build output is automatically configured for GitHub Pages with:
 
 ### Updating Your Collection
 
-1. Update your `cratediggerDB.csv` file with new records
+1. Update your `cratediggerDB.csv` file with new records (keep it in the project root)
 2. Run `npm run deploy` to rebuild and redeploy
 3. Commit and push changes to update the live site
+
+> **Important:** Always edit the `cratediggerDB.csv` file in the project root, not in the `docs/` folder. The build process automatically copies it to `docs/` for deployment.
 
 ### Visual Customization
 
