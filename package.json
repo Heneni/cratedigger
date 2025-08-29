@@ -29,6 +29,7 @@
     "prepublish": "gulp build",
     "build": "gulp build",
     "build:ci": "gulp clean && gulp build",
+    "build:fallback": "mkdir -p lib && cp -r src/htdocs/* lib/ && cp -r src/images lib/ 2>/dev/null || true && echo '<!-- Fallback build: some assets may be missing -->' >> lib/index.html",
     "start": "gulp"
   },
   "devDependencies": {
