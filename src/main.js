@@ -21,7 +21,7 @@ class CrateDigger {
     this.albumCoverEl = document.getElementById('album-cover')
     this.albumTitleEl = document.getElementById('album-title')
     this.albumArtistEl = document.getElementById('album-artist')
-    this.albumYearEl = document.getElementById('album-year')
+    this.albumGenreEl = document.getElementById('album-genre')
     this.closeInfoEl = document.getElementById('close-info')
     
     this.init()
@@ -288,10 +288,17 @@ class CrateDigger {
   }
 
   showInfoPanel(record) {
+    // Set up image with error handling
     this.albumCoverEl.src = record.cover
+    this.albumCoverEl.onerror = () => {
+      // Fallback to a placeholder image if the cover URL fails
+      this.albumCoverEl.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjNjY3ZWVhIi8+CjxwYXRoIGQ9Ik0yMDAgMTAwQzI1NS4yIDEwMCAzMDAgMTQ0LjggMzAwIDIwMEMzMDAgMjU1LjIgMjU1LjIgMzAwIDIwMCAzMDBDMTQ0LjggMzAwIDEwMCAyNTUuMiAxMDAgMjAwQzEwMCAxNDQuOCAxNDQuOCAxMDAgMjAwIDEwMFoiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuMiIvPgo8cGF0aCBkPSJNMjAwIDE2MEMyMjcuNiAxNjAgMjUwIDE4Mi40IDI1MCAyMTBDMjUwIDIzNy42IDIyNy42IDI2MCAyMDAgMjYwQzE3Mi40IDI2MCAxNTAgMjM3LjYgMTUwIDIxMEMxNTAgMTgyLjQgMTcyLjQgMTYwIDIwMCAxNjBaIiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPHN2Zz4K'
+      this.albumCoverEl.onerror = null // Prevent infinite loop
+    }
+    
     this.albumTitleEl.textContent = record.title
     this.albumArtistEl.textContent = record.artist
-    this.albumYearEl.textContent = record.year
+    this.albumGenreEl.textContent = record.year
     
     this.infoPanelEl.classList.remove('hidden')
     this.infoPanelEl.classList.add('visible')
