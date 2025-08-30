@@ -87,14 +87,14 @@ class CrateDigger {
 
   async loadData() {
     try {
-      const response = await fetch('/cratediggerDB.csv')
+      const response = await fetch('./cratediggerDB.csv')
       const csvText = await response.text()
       
       Papa.parse(csvText, {
         header: true,
         complete: (results) => {
-          // Take only first 250 records as specified
-          this.records = results.data.slice(0, 250).filter(record => 
+          // Take only first 23 records as specified
+          this.records = results.data.slice(0, 23).filter(record => 
             record.title && record.artist && record.cover
           )
           this.createCrates()
@@ -289,9 +289,12 @@ class CrateDigger {
 
   showInfoPanel(record) {
     this.albumCoverEl.src = record.cover
+    this.albumCoverEl.onerror = () => {
+      this.albumCoverEl.src = './fallback.jpg'
+    }
     this.albumTitleEl.textContent = record.title
     this.albumArtistEl.textContent = record.artist
-    this.albumYearEl.textContent = record.year
+    this.albumYearEl.querySelector('span').textContent = record.genre || 'Unknown Genre'
     
     this.infoPanelEl.classList.remove('hidden')
     this.infoPanelEl.classList.add('visible')
